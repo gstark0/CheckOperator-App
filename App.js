@@ -5,7 +5,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const AppStackNavigator = createStackNavigator({
 	ContactsList: {
-		screen: ContactsList
+		screen: ContactsList,
+		options: {
+			title: 'NamierzOperatora'
+		}
 	}
 });
 
