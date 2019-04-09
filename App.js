@@ -7,7 +7,8 @@ const AppStackNavigator = createStackNavigator({
 	ContactsList: {
 		screen: ContactsList,
 		options: {
-			title: 'NamierzOperatora'
+			title: 'NamierzOperatora',
+			headerLayoutPreset: 'center'
 		}
 	}
 });
