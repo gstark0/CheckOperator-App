@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableHighlight, StatusBar } from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { Contacts, LinearGradient } from 'expo';
+import { Permissions } from 'expo';
 
 
 export default class ContactsList extends React.Component {
@@ -19,6 +20,12 @@ export default class ContactsList extends React.Component {
   	};
 
 	async componentDidMount() {
+		const permission = await Permissions.askAsync(Permissions.CONTACTS);
+
+		if (permission.status !== 'granted') {
+			return;
+		}
+
 		const { data } = await Contacts.getContactsAsync();
 
 		let contactsList = [];
@@ -30,22 +37,21 @@ export default class ContactsList extends React.Component {
 	}
 
 	render() {
+		const { navigate } = this.props.navigation;
 
 		return (
 			<View>
-			<StatusBar barStyle='light-content' /> 
+				<StatusBar barStyle='light-content' /> 
 				<FlatList
 					style={styles.container}
 					data={this.state.contacts}
 					renderItem={({item}) =>
-						<TouchableHighlight style={styles.contact} onPress={() => {
-							console.log(item.phone);
-						}}>
+						<TouchableOpacity style={styles.contact} onPress={() => navigate('NumberInfo')}>
 							<View style={styles.contactContainer}>
 								<Text style={styles.name}>{item.name}</Text>
 								<Text style={styles.phone}>{item.phone}</Text>
 							</View>
-						</TouchableHighlight>
+						</TouchableOpacity>
 					}
 				/>
 			</View>
