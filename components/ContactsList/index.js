@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableHighlight, StatusBar } from 'react-native';
 import { Contacts, LinearGradient } from 'expo';
 
 
@@ -33,11 +33,14 @@ export default class ContactsList extends React.Component {
 
 		return (
 			<View>
+			<StatusBar barStyle='light-content' /> 
 				<FlatList
 					style={styles.container}
 					data={this.state.contacts}
 					renderItem={({item}) =>
-						<TouchableHighlight style={styles.contact}>
+						<TouchableHighlight style={styles.contact} onPress={() => {
+							console.log(item.phone);
+						}}>
 							<View style={styles.contactContainer}>
 								<Text style={styles.name}>{item.name}</Text>
 								<Text style={styles.phone}>{item.phone}</Text>
