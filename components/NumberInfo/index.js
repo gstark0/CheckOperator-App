@@ -32,6 +32,11 @@ export default class NumberInfo extends React.Component {
 	  			let operatorCode = resp.split('Kod sieci:</b></td><td>')[1].split('</td><tr><td><b>Operator:</b></td><td>')[0];
 	  			let operatorName = resp.split('Operator:</b></td><td>')[1].split('</td>')[0];
 
+	  			if(operatorName == 'P4')
+	  				operatorName = 'PLAY (P4)';
+	  			else if(operatorName.includes('Virgin'))
+	  				operatorName = 'Virgin Mobile Polska'
+
 	  			this.setState({
 	  				contactName: params.name,
 	  				contactPhone: params.phone,

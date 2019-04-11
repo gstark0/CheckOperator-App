@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, Text, TouchableOpacity, StatusBar } from 'react-native';
-import { Contacts, LinearGradient } from 'expo';
-import { Permissions } from 'expo';
+import { Contacts, LinearGradient, Permissions } from 'expo';
+import { Searchbar } from 'react-native-paper';
 
 
 export default class ContactsList extends React.Component {
@@ -9,7 +9,8 @@ export default class ContactsList extends React.Component {
 		super(props);
 
 		this.state = {
-			contacts: []
+			contacts: [],
+			contactsBackup: []
 		}
 	}
 
@@ -32,17 +33,28 @@ export default class ContactsList extends React.Component {
 			if(contact.phoneNumbers != undefined)
 				contactsList.push({'name': contact.name, 'phone': contact.phoneNumbers[0].number})
 		});
-		this.setState({contacts: contactsList});
+		this.setState({contacts: contactsList, contactsBackup: contactsList});
 	}
 
 	render() {
 		const { navigate } = this.props.navigation;
 
 		return (
-			<View>
+			<View style={{flex: 1}}>
 				<StatusBar barStyle='light-content' /> 
+				<Searchbar placeholder='Szukaj kontaktu...' onChangeText={query => {
+
+
+					filteredContacts = this.state.contactsBackup.filter(item => {
+						return item.name.includes(query);
+					});
+
+					this.setState({
+						contacts: filteredContacts
+					})
+				}}/>
 				<FlatList
-					style={styles.container}
+					contentContainerStyle={{ flexGrow: 1 }}
 					data={this.state.contacts}
 					renderItem={({item}) =>
 						<TouchableOpacity style={styles.contact} onPress={() => navigate('NumberInfo', {name: item.name, phone: item.phone})}>
@@ -59,10 +71,6 @@ export default class ContactsList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		height: '100%',
-	},
-
 	contact: {
 		height: 87,
 		alignItems: 'center',
