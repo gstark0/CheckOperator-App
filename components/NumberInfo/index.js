@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const smallFont = 15;
 const sidePadding = 15;
+const mainColor = '#E03434';
 
 export default class NumberInfo extends React.Component {
 	constructor(props) {
@@ -54,7 +55,7 @@ export default class NumberInfo extends React.Component {
 		if(this.state.isLoading) {
 			return (
 				<View style={{backgroundColor: '#fff', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-					<ActivityIndicator size="large" color="#D94336" />
+					<ActivityIndicator size='large' color={mainColor} />
 				</View>);
 		} else {
 			return(
@@ -85,8 +86,8 @@ export default class NumberInfo extends React.Component {
 
 					<View style={styles.bottomBar}>
 						<TouchableOpacity style={{alignItems: 'center', justifyContent: 'center'}} onPress={() => Linking.openURL(`tel:${this.state.contactPhone}`)}>
-							<Ionicons name='ios-call' color='#E03434' size={35} />
-							<Text style={{fontSize: 10, color: '#E03434'}}>ZADZWOŃ</Text>
+							<Ionicons name='ios-call' color={mainColor} size={35} />
+							<Text style={{fontSize: 10, color: mainColor}}>ZADZWOŃ</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
 
 	infoData: {
 		marginLeft: 3,
-		color: '#E03434',
+		color: mainColor,
 		fontSize: smallFont,
 		fontWeight: '500'
 	},
