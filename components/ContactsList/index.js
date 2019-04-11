@@ -26,7 +26,7 @@ export default class ContactsList extends React.Component {
 			return;
 		}
 
-		const { data } = await Contacts.getContactsAsync();
+		const { data } = await Contacts.getContactsAsync({sort: Contacts.SortTypes.FirstName});
 
 		let contactsList = [];
 		data.forEach(contact => {
