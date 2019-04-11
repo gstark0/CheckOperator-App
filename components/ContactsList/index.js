@@ -46,7 +46,7 @@ export default class ContactsList extends React.Component {
 
 
 					filteredContacts = this.state.contactsBackup.filter(item => {
-						return item.name.includes(query);
+						return item.name.toLowerCase().includes(query.toLowerCase());
 					});
 
 					this.setState({
