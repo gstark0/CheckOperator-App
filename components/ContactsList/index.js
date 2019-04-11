@@ -46,7 +46,7 @@ export default class ContactsList extends React.Component {
 					style={styles.container}
 					data={this.state.contacts}
 					renderItem={({item}) =>
-						<TouchableOpacity style={styles.contact} onPress={() => navigate('NumberInfo')}>
+						<TouchableOpacity style={styles.contact} onPress={() => navigate('NumberInfo', {name: item.name, phone: item.phone})}>
 							<View style={styles.contactContainer}>
 								<Text style={styles.name}>{item.name}</Text>
 								<Text style={styles.phone}>{item.phone}</Text>
