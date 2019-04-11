@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, View, Text, TouchableOpacity, StatusBar, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, Image, View, Text, TouchableOpacity, StatusBar, Alert, ActivityIndicator, Linking } from 'react-native';
 import { Contacts } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -84,7 +84,7 @@ export default class NumberInfo extends React.Component {
 					</View>
 
 					<View style={styles.bottomBar}>
-						<TouchableOpacity style={{alignItems: 'center', justifyContent: 'center'}}>
+						<TouchableOpacity style={{alignItems: 'center', justifyContent: 'center'}} onPress={() => Linking.openURL(`tel:${this.state.contactPhone}`)}>
 							<Ionicons name='ios-call' color='#E03434' size={35} />
 							<Text style={{fontSize: 10, color: '#E03434'}}>ZADZWOŃ</Text>
 						</TouchableOpacity>
