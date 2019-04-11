@@ -11,6 +11,9 @@ const AppStackNavigator = createStackNavigator({
 		},
 		navigationOptions: {
 			headerBackTitle: 'Cofnij',
+			headerStyle: {
+				backgroundColor: '#E03434'
+			}
 		}
 	},
 
@@ -18,6 +21,11 @@ const AppStackNavigator = createStackNavigator({
 		screen: NumberInfo,
 		options: {
 			headerLayoutPreset: 'center'
+		},
+		navigationOptions: {
+			headerStyle: {
+				backgroundColor: '#E03434'
+			}
 		}
 	}
 });

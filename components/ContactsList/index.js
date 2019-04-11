@@ -15,8 +15,7 @@ export default class ContactsList extends React.Component {
 
 	static navigationOptions = {
     	title: 'NamierzOperatora',
-    	headerTintColor: '#fff',
-    	headerBackground: <LinearGradient style={{flex: 1}} colors={['#FF9D6B', '#FF84AD']} start={[0, 0]} end={[1, 0]}></LinearGradient>
+    	headerTintColor: '#fff'
   	};
 
 	async componentDidMount() {
@@ -61,32 +60,33 @@ export default class ContactsList extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		height: '100%'
+		height: '100%',
 	},
 
 	contact: {
-		width: '100%',
-		height: 72,
-		alignItems: 'center'
+		height: 87,
+		alignItems: 'center',
+		marginLeft: 15,
+		marginRight: 15
 	},
 
 	contactContainer: {
-		width: 300,
-		borderBottomColor: '#D9D9D9',
+		width: '100%',
+		borderBottomColor: '#D6D6D6',
 		borderBottomWidth: 1,
 		height: '100%',
 		justifyContent: 'center'
 	},
 
 	name: {
-		fontSize: 20,
+		fontSize: 24,
 		fontWeight: 'bold',
 		color: '#4B4B4B'
 	},
 
 	phone: {
-		color: '#D9D9D9',
-		fontSize: 15,
+		color: '#A5A5A5',
+		fontSize: 13,
 		fontWeight: '600'
 	}
 });

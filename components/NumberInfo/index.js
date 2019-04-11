@@ -1,6 +1,10 @@
 import React from 'react';
-import { StyleSheet, Image, View, Text, TouchableHighlight, StatusBar, Alert, ActivityIndicator } from 'react-native';
-import { Contacts, LinearGradient } from 'expo';
+import { StyleSheet, Image, View, Text, TouchableOpacity, StatusBar, Alert, ActivityIndicator } from 'react-native';
+import { Contacts } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
+
+const smallFont = 15;
+const sidePadding = 15;
 
 export default class NumberInfo extends React.Component {
 	constructor(props) {
@@ -14,8 +18,7 @@ export default class NumberInfo extends React.Component {
 	}
 
 	static navigationOptions = {
-    	headerTintColor: '#fff',
-    	headerBackground: <LinearGradient style={{flex: 1}} colors={['#FF9D6B', '#FF84AD']} start={[0, 0]} end={[1, 0]}></LinearGradient>
+    	headerTintColor: '#fff'
   	};
 
   	componentDidMount() {
@@ -32,7 +35,7 @@ export default class NumberInfo extends React.Component {
 	  				contactName: params.name,
 	  				contactPhone: params.phone,
 	  				operatorCode: operatorCode,
-	  				operatorName: operatorName,
+	  				operatorName: operatorName.toUpperCase(),
 	  				isLoading: false
 	  			});
 
@@ -56,25 +59,35 @@ export default class NumberInfo extends React.Component {
 		} else {
 			return(
 				<View>
-					<View style={styles.contactInfo}>
-						<Text style={styles.contactName}>{this.state.contactName}</Text>
-						<Text style={styles.contactNumber}>{this.state.contactPhone}</Text>
+					<View style={{paddingLeft: sidePadding, paddingRight: sidePadding, height: '100%'}}>
+						<Text style={{fontSize: smallFont - 2, color: '#A5A5A5', marginBottom: 63, fontWeight: '500', marginTop: '20%'}}>PROFIL KONTAKTU</Text>
+
+						<View style={styles.contactInfo}>
+							<Text style={styles.contactName}>{this.state.contactName}</Text>
+							<Text style={styles.contactNumber}>{this.state.contactPhone}</Text>
+						</View>
+
+						<View>
+							<View style={styles.infoContainer}>
+								<Text style={styles.infoLabel}>KRAJ:</Text>
+								<Text style={styles.infoData}>POLSKA</Text>
+							</View>
+							<View style={styles.infoContainer}>
+								<Text style={styles.infoLabel}>KOD OPERATORA:</Text>
+								<Text style={styles.infoData}>{this.state.operatorCode}</Text>
+							</View>
+							<View style={styles.infoContainer}>
+								<Text style={styles.infoLabel}>OPERATOR:</Text>
+								<Text style={styles.infoData}>{this.state.operatorName}</Text>
+							</View>
+						</View>
 					</View>
 
-					<View style={styles.operatorInfo}>
-						<View style={{ marginRight: 40, alignItems: 'center',  }}>
-							<Text style={styles.operatorInfoLabel}>Operator</Text>
-							<View style={{ justifyContent: 'center', height: 80}}>
-								<Text style={{ fontSize: 30, fontWeight: 'bold', color: '#FF9973' }}>{this.state.operatorName}</Text>
-							</View>
-						</View>
-
-						<View style={{ alignItems: 'center'}}>
-							<Text style={styles.operatorInfoLabel}>Kod sieci</Text>
-							<View style={{ justifyContent: 'center', height: 80}}>
-								<Text style={{ fontSize: 30, fontWeight: 'bold', color: '#FF9973' }}>{this.state.operatorCode}</Text>
-							</View>
-						</View>
+					<View style={styles.bottomBar}>
+						<TouchableOpacity style={{alignItems: 'center', justifyContent: 'center'}}>
+							<Ionicons name='ios-call' color='#E03434' size={35} />
+							<Text style={{fontSize: 10, color: '#E03434'}}>ZADZWOŃ</Text>
+						</TouchableOpacity>
 					</View>
 				</View>
 			);
@@ -84,32 +97,54 @@ export default class NumberInfo extends React.Component {
 
 const styles = StyleSheet.create({
 	contactInfo: {
-		marginTop: '35%',
-		alignItems: 'center',
-		marginBottom: 70
+		marginBottom: 63
 	},
 
 	contactName: {
-		fontWeight: 'bold',
-		color: '#4B4B4B',
-		marginBottom: 5,
-		fontSize: 31,
+		marginBottom: 17,
+		fontSize: 36,
+		fontWeight: '500'
 	},
 
 	contactNumber: {
-		fontWeight: '600',
 		fontSize: 20,
-		color: '#D9D9D9'
+		color: '#A5A5A5',
+		fontWeight: '500'
 	},
 
-	operatorInfo: {
-		flexDirection: 'row',
-		justifyContent: 'center'
+	infoContainer: {
+		flexDirection: 'row'
 	},
 
-	operatorInfoLabel: {
-		fontSize: 28,
-		marginBottom: 10,
-		color: '#4B4B4B'
+	infoLabel: {
+		fontSize: smallFont,
+		marginBottom: 15,
+		color: '#A5A5A5',
+		fontWeight: '500'
+	},
+
+	infoData: {
+		marginLeft: 3,
+		color: '#E03434',
+		fontSize: smallFont,
+		fontWeight: '500'
+	},
+
+	bottomBar: {
+		position: 'absolute',
+		justifyContent: 'center',
+		bottom: 0,
+		width: '100%',
+		height: 89,
+		backgroundColor: '#fff',
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 5,
+		},
+		shadowOpacity: 0.5,
+		shadowRadius: 6.68,
+
+		elevation: 11
 	}
 });
