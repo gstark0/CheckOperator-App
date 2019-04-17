@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity, StatusBar } from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, StatusBar, Alert } from 'react-native';
 import { Contacts, LinearGradient, Permissions } from 'expo';
 import { Searchbar } from 'react-native-paper';
 
@@ -23,6 +23,7 @@ export default class ContactsList extends React.Component {
 		const permission = await Permissions.askAsync(Permissions.CONTACTS);
 
 		if (permission.status !== 'granted') {
+			Alert.alert('Uprawnienia do kontaktów są wymagane!')
 			return;
 		}
 
