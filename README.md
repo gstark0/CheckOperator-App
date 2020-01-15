@@ -1,4 +1,4 @@
-# ZnajdźOperatora (CheckOperator)
+# NamierzOperatora (CheckOperator)
 ## 🇬🇧 EN 🇬🇧
 Mobile app that recognizes mobile network operators by phone number. Works with polish phone numbers only!.</br>
 You can download the final version at the [Google Play]().
